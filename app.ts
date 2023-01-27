@@ -1,35 +1,25 @@
-function add(n1: number, n2: number) {
-  return n1 + n2;
+let userInput: unknown;
+
+// we can store any value in here without getting errors
+
+let userName: string;
+
+// userName = userInput;
+
+// this will throw an error
+
+if (typeof userInput === 'string') {
+  userName = userInput;
 }
 
-function printResult(num: number): void {
-  console.log('Result: ' + num);
+// however, typScript will understand this check and allow you to change the value of username if it is a string
+// tyScript works with the typeof oporator very well
+
+function generateError(message: string, code: number): never {
+  // we can throw any object or value as an error in js
+  throw { message: message, errorCode: code };
+  // this funciton never returns a value - ends the script
+  // the infered type is void but you can be very clear and implicitly state that never is the return value (the function never returns)
 }
 
-// void return type - doesn't return anything
-
-function addAndHandle(n1: number, n2: number, cb: (num: number) => void) {
-  const result = n1 + n2;
-  cb(result);
-}
-
-printResult(add(5, 12));
-
-let someValue: undefined;
-
-// undefined is a valid return type however - must use void without a return statement
-
-// let combineValues: Function;
-
-let combineValues: (a: number, b: number) => number;
-
-combineValues = add;
-// combineValues = printResult; this will throw an error
-
-console.log(combineValues(8, 8));
-
-addAndHandle(10, 20, (result) => {
-  console.log('Console log', result);
-  // you are allowed to return something here in the callback but in the fucntion definition we told typeScript we are not returning anything from the original function so nothing will be done with the return value in the callback
-  // will still be able to be compiled with a return statement in the callback
-});
+generateError('An error occured: ', 500);
