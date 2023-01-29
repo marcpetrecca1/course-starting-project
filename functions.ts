@@ -1,8 +1,8 @@
-function add(n1: number, n2: number) {
+function adding(n1: number, n2: number) {
   return n1 + n2;
 }
 
-function printResult(num: number): void {
+function printingResult(num: number) {
   console.log('Result: ' + num);
 }
 
@@ -13,7 +13,7 @@ function addAndHandle(n1: number, n2: number, cb: (num: number) => void) {
   cb(result);
 }
 
-printResult(add(5, 12));
+printingResult(adding(5, 12));
 
 let someValue: undefined;
 
@@ -23,7 +23,7 @@ let someValue: undefined;
 
 let combineValues: (a: number, b: number) => number;
 
-combineValues = add;
+combineValues = adding;
 // combineValues = printResult; this will throw an error
 
 console.log(combineValues(8, 8));
