@@ -79,3 +79,43 @@ function useVehicle(vehicle: Vehicle) {
     vehicle.loadCargo(1000);
   }
 }
+
+/*
+discriminated union (pattern)
+- available for object types
+- works with interfaces and type definitions
+- one common property in every object that makes up out union eg. Bird/Horse that describes that object so we can use
+this property in our check for 100 percent type safety
+*/
+
+interface Bird {
+  // literal type as a type guard
+  type: 'bird';
+  flyingSpeed: number;
+}
+interface Horse {
+  // literal type as a type guard
+  type: 'horse';
+  runningSpeed: number;
+}
+
+type Animal = Bird | Horse;
+
+function moveAnimal(animal: Animal) {
+  //   if ('flyingSpeed' in animal) {
+  //     console.log(animal.flyingSpeed);
+  //   }
+
+  // instanceof doesn't work here because we are using an interface
+  let speed;
+  switch (animal.type) {
+    case 'bird':
+      speed = animal.flyingSpeed;
+      break;
+    case 'horse':
+      speed = animal.runningSpeed;
+  }
+  console.log('Moving speed: ', speed);
+}
+
+moveAnimal({ type: 'bird', flyingSpeed: 10 });
