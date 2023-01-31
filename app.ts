@@ -26,7 +26,7 @@ type Unviersal = Combine & Numeric;
 
 // type guards help us with union types
 
-function add(a: Combine, b: Combine) {
+function addTogether(a: Combine, b: Combine) {
   // this if statement is known as a type guard
   if (typeof a === 'string' || typeof b === 'string') {
     // what you do with the values does depend on the type
@@ -119,3 +119,15 @@ function moveAnimal(animal: Animal) {
 }
 
 moveAnimal({ type: 'bird', flyingSpeed: 10 });
+
+/* Type casting */
+// - angle bracket type casting
+// const userInputElement = <HTMLInputElement>(
+//   document.getElementById('user-input')
+// );
+
+const userInputElement = document.getElementById(
+  'user-input'
+) as HTMLInputElement;
+
+userInputElement.value = 'Hi there!';
