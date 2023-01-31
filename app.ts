@@ -126,8 +126,18 @@ moveAnimal({ type: 'bird', flyingSpeed: 10 });
 //   document.getElementById('user-input')
 // );
 
+// - type casting for react
 const userInputElement = document.getElementById(
   'user-input'
 ) as HTMLInputElement;
 
 userInputElement.value = 'Hi there!';
+
+interface ErrorContainer {
+  // { email: 'not a vlid email'}, username: 'Must start with a cap letter' }
+  [prop: string]: string;
+}
+
+const errorBag: ErrorContainer = {
+  email: 'Not s valid email',
+};
