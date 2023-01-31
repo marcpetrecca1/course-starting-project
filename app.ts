@@ -26,6 +26,12 @@ type Unviersal = Combine & Numeric;
 
 // type guards help us with union types
 
+/* Function overloads - where typeScript cannot infer the correct return type on its own*/
+
+function addTogether(a: number, b: number): number;
+function addTogether(a: string, b: string): string;
+function addTogether(a: string, b: number): string;
+function addTogether(a: number, b: string): string;
 function addTogether(a: Combine, b: Combine) {
   // this if statement is known as a type guard
   if (typeof a === 'string' || typeof b === 'string') {
@@ -36,6 +42,8 @@ function addTogether(a: Combine, b: Combine) {
   // or add mathematically
   return a + b;
 }
+
+const result = addTogether('Max', 'Jones');
 
 type UnknownEmployee = Employee | Admin;
 
@@ -133,11 +141,14 @@ const userInputElement = document.getElementById(
 
 userInputElement.value = 'Hi there!';
 
+/* Index properites */
 interface ErrorContainer {
   // { email: 'not a vlid email'}, username: 'Must start with a cap letter' }
   [prop: string]: string;
+  // prop can be a number listed as type string - but type number can't be used with a string key type
 }
 
 const errorBag: ErrorContainer = {
   email: 'Not s valid email',
+  username: 'Must start with a cap letter',
 };
